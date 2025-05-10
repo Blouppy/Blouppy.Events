@@ -13,7 +13,7 @@ namespace Blouppy.Events.EventPublishers;
 /// return Task.WhenAll(tasks);
 /// </code>
 /// </summary>
-internal sealed class TaskWhenAllPublisher : IEventPublisher
+public sealed class TaskWhenAllEventPublisher : IEventPublisher
 {
     public Task PublishAsync(
         IEnumerable<EventHandlerExecutor> handlerExecutors, 

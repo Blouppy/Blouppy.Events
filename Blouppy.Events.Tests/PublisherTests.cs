@@ -13,7 +13,7 @@ public sealed class PublisherTests
     {
         // Arrange
         var serviceProvider = ServiceProviderBuilder.Build(x => x
-            .AddEventPublisher<ForeachAwaitPublisher>()
+            .AddEventPublisher<ForeachAwaitEventPublisher>()
             .AddMockedEventHandler<Event1>()
         );
 
@@ -35,7 +35,7 @@ public sealed class PublisherTests
     {
         // Arrange
         var serviceProvider = ServiceProviderBuilder.Build(x => x
-            .AddEventPublisher<ForeachAwaitPublisher>()
+            .AddEventPublisher<ForeachAwaitEventPublisher>()
             .AddMockedEventHandler<Event1>()
             .AddMockedEventHandler<Event1>()
         );
@@ -60,7 +60,7 @@ public sealed class PublisherTests
     {
         // Arrange
         var serviceProvider = ServiceProviderBuilder.Build(x => x
-            .AddEventPublisher<ForeachAwaitPublisher>()
+            .AddEventPublisher<ForeachAwaitEventPublisher>()
         );
         
         var sut = BuildSut(serviceProvider);
@@ -85,7 +85,7 @@ public sealed class PublisherTests
 
         // Arrange
         var serviceProvider = ServiceProviderBuilder.Build(x => x
-            .AddEventPublisher<ForeachAwaitPublisher>()
+            .AddEventPublisher<ForeachAwaitEventPublisher>()
             .AddHandler(handler1)
             .AddHandler(handler1Bis)
             .AddHandler(handler2)

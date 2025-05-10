@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blouppy.Events.Tests.EventPublishers;
 
-public sealed class ForeachAwaitPublisherTests
+public sealed class ForeachAwaitEventPublisherTests
 {
     [Fact]
     public async Task Should_execute_handlers_sequentially()
@@ -18,7 +18,7 @@ public sealed class ForeachAwaitPublisherTests
         var handler2 = new DelayedHandler(delay);
 
         var serviceProvider = ServiceProviderBuilder.Build(x => x
-            .AddEventPublisher<ForeachAwaitPublisher>()
+            .AddEventPublisher<ForeachAwaitEventPublisher>()
             .AddHandler(handler1)
             .AddHandler(handler2)
         );

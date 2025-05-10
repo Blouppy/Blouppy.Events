@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blouppy.Events.Tests.EventPublishers;
 
-public sealed class TaskWhenAllPublisherTests
+public sealed class TaskWhenAllEventPublisherTests
 {
     [Fact]
     public async Task Should_execute_handlers_in_parallel()
@@ -18,7 +18,7 @@ public sealed class TaskWhenAllPublisherTests
         var handler2 = new DelayedHandler(delay);
 
         var serviceProvider = ServiceProviderBuilder.Build(x => x
-            .AddEventPublisher<TaskWhenAllPublisher>()
+            .AddEventPublisher<TaskWhenAllEventPublisher>()
             .AddHandler(handler1)
             .AddHandler(handler2)
         );
