@@ -1,0 +1,4 @@
+{
+  "matchManagers": ["nuget"],
+  "labels": ["dependencies 📦", "nuget"]
+}

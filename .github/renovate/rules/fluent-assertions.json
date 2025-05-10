@@ -1,0 +1,9 @@
+{
+  "packageRules": [
+    {
+      "matchManagers": ["nuget"],
+      "matchPackageNames": ["FluentAssertions"],
+      "allowedVersions": "<8.0.0"
+    }
+  ]
+}

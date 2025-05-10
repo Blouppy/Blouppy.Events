@@ -1,0 +1,11 @@
+﻿<Solution>
+  <Project Path="Blouppy.Events.Abstractions\Blouppy.Events.Abstractions.csproj" Type="Classic C#" />
+  <Project Path="Blouppy.Events.Tests\Blouppy.Events.Tests.csproj" Type="Classic C#" />
+  <Project Path="Blouppy.Events\Blouppy.Events.csproj" Type="Classic C#" />
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+  </Folder>
+</Solution>
