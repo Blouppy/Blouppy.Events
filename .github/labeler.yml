@@ -1,18 +1,10 @@
-back ⚙️:
+feature 📦:
 - changed-files:
-  - any-glob-to-any-file: back/**
+  - any-glob-to-any-file: Blouppy.Events/**
 
-migration 📦:
+test ⚙️:
 - changed-files:
-  - any-glob-to-any-file: back/Blouppy.Infrastructure/Persistence/Migrations/*
-
-front 👁️:
-- changed-files:
-  - any-glob-to-any-file: front/**
-
-api 🌐:
-- changed-files:
-  - any-glob-to-any-file: api/**
+  - any-glob-to-any-file: Blouppy.Events.Tests/**
 
 ci/cd 🚀:
 - changed-files:
