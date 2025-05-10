@@ -13,6 +13,7 @@ namespace Blouppy.Events.EventPublishers;
 /// </summary>
 public sealed class ForeachAwaitEventPublisher : IEventPublisher
 {
+    /// <summary>
     public async Task PublishAsync(
         IEnumerable<EventHandlerExecutor> handlerExecutors, 
         IEvent @event, 
