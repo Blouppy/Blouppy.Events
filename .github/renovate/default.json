@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "config:recommended"
+  ],
+  "assignees": ["@jboinembalome"],
+  "branchPrefix": "renovate/",
+  "commitMessagePrefix": "chore(deps):",
+  "baseBranches": ["main"],
+  "schedule": [
+    "after 9pm every weekday",
+    "before 9am every weekday",
+    "every weekend"
+  ],
+  "packageRules": [
+    {
+      "extends": [
+        "local>Blouppy/BlouppyAngularAspNetCoreStarter//.github/renovate/rules/nuget"
+      ]
+    },
+    {
+      "extends": [
+        "local>Blouppy/BlouppyAngularAspNetCoreStarter//.github/renovate/rules/autofixture"
+      ]
+    },
+    {
+      "extends": [
+        "local>Blouppy/BlouppyAngularAspNetCoreStarter//.github/renovate/rules/fluent-assertions"
+      ]
+    },
+    {
+      "extends": [
+        "local>Blouppy/BlouppyAngularAspNetCoreStarter//.github/renovate/rules/xunit"
+      ]
+    }
+  ],
+  "major": {
+    "automerge": false
+  },
+  "minor": {
+    "automerge": false
+  },
+  "patch": {
+    "automerge": true
+  },
+  "dependencyDashboard": true,
+  "timezone": "Europe/Paris"
+}

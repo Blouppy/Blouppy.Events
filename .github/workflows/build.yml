@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - .gitignore
+      - LICENSE
+      - README.md
+
+  workflow_call:
+    inputs:
+      build-artifacts:
+        type: boolean
+        required: true
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      ASPNETCORE_ENVIRONMENT: "CI"
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout code
+
+      - name: Setup .NET 📦
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Install dependencies 📂
+        run: dotnet restore
+
+      - name: Build 🧱
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Test 🧪
+        run: dotnet test --no-build --configuration Release

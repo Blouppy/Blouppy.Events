@@ -1,0 +1,4 @@
+{
+  "matchPackagePatterns": ["^xunit"],
+  "groupName": "xUnit monorepo"
+}
