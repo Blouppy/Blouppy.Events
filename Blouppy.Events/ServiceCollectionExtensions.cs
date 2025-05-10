@@ -8,26 +8,58 @@ namespace Blouppy.Events;
 
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Registers handlers types from the specified assemblies
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
+    /// <param name="optionsAction">The action used to configure the options.</param>
+    /// <returns>The same service collection so that multiple calls can be chained.</returns>
     public static IServiceCollection AddBlouppyEvents(
         this IServiceCollection services, 
-        params Assembly[] assembliesToScan)
+        Action<BlouppyEventsOptionsBuilder> optionsAction)
     {
+        var serviceConfiguration = new BlouppyEventsOptionsBuilder();
+
+        optionsAction.Invoke(serviceConfiguration);
+
+        return services.AddBlouppyEvents(serviceConfiguration);
+    }
+    
+    /// <summary>
+    /// Registers handlers and mediator types from the specified assemblies
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
+    /// <param name="optionsBuilder">The configuration options.</param>
+    /// <returns>The same service collection so that multiple calls can be chained.</returns>
+    public static IServiceCollection AddBlouppyEvents(
+        this IServiceCollection services, 
+        BlouppyEventsOptionsBuilder optionsBuilder)
+    {
+        if (optionsBuilder.AssembliesToScan.Count == 0)
+        {
+            throw new ArgumentException("No assemblies found to scan. Supply at least one assembly to scan for handlers.");
+        }
+        
         services.AddScoped<IPublisher, Publisher>();
 
-        // You can use replace ForeachAwaitPublisher by TaskWhenAllPublisher depending on your use case.
-        services.AddScoped<IEventPublisher, ForeachAwaitPublisher>();
-
-        // Register handlers in specified assemblies
-        return services.TryAddGenericImplementations(
+        // Use TryAdd, so any existing service registration doesn't get overridden
+        services.TryAdd(new ServiceDescriptor(
+            typeof(IEventPublisher), 
+            optionsBuilder.EventPublisherType, 
+            optionsBuilder.Lifetime));
+        
+        services.TryAddGenericImplementations(
             typeof(IEventHandler<>), 
-            assembliesToScan,
-            lifetime: ServiceLifetime.Scoped);
+            optionsBuilder.AssembliesToScan,
+            lifetime: optionsBuilder.Lifetime);
+
+        return services;
     }
    
-    private static IServiceCollection TryAddGenericImplementations(
+    private static void TryAddGenericImplementations(
         this IServiceCollection services,
         Type interfaceType,
-        Assembly[] assemblies,
+        IEnumerable<Assembly> assemblies,
         ServiceLifetime lifetime)
     {
         foreach (var assembly in assemblies)
@@ -37,8 +69,6 @@ public static class ServiceCollectionExtensions
                 assembly, 
                 lifetime);
         }
-
-        return services;
     }
     
     private static void TryAddGenericImplementations(

@@ -3,7 +3,7 @@ using Blouppy.Events.EventHandlers;
 
 namespace Blouppy.Events.EventPublishers;
 
-internal interface IEventPublisher
+public interface IEventPublisher
 {
     Task PublishAsync(IEnumerable<EventHandlerExecutor> handlerExecutors, IEvent @event, CancellationToken cancellationToken);
 }
