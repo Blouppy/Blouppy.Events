@@ -1,0 +1,42 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*'  # capture v1.0.0, v1.1.0-beta1, etc.
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          TAG_NAME=${GITHUB_REF##*/}
+          VERSION=${TAG_NAME#v}
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack Blouppy.Events
+        run: dotnet pack Blouppy.Events/Blouppy.Events.csproj --configuration Release --no-build -p:PackageVersion=${{ steps.version.outputs.VERSION }}
+
+      - name: Pack Blouppy.Events.Abstractions
+        run: dotnet pack Blouppy.Events.Abstractions/Blouppy.Events.Abstractions.csproj --configuration Release --no-build -p:PackageVersion=${{ steps.version.outputs.VERSION }}
+
+
+      - name: Push to NuGet
+        run: dotnet nuget push **/*.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.BLOUPPY_EVENTS_NUGET_API_KEY }}
