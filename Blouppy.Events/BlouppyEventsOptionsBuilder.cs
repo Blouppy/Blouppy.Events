@@ -4,6 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Blouppy.Events;
 
+/// <summary>
+/// Builder for Blouppy Events options.
+/// </summary>
 public sealed class BlouppyEventsOptionsBuilder
 {
     internal List<Assembly> AssembliesToScan { get; } = [];

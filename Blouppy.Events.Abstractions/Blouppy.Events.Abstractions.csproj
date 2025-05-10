@@ -1,3 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Authors>Jimmy Boinembalome</Authors>
+    <Description>Abstractions for the Blouppy.Events package</Description>
+    <Copyright>Copyright Blouppy</Copyright>
+    <PackageTags>events;inmemory</PackageTags>
+    <PackageIcon>blouppy-144x144.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="blouppy-144x144.png" Pack="true" PackagePath="" />
+  </ItemGroup>
 </Project>
