@@ -2,13 +2,17 @@ feature 📦:
 - changed-files:
   - any-glob-to-any-file: Blouppy.Events/**
 
-test ⚙️:
+test 🧪:
 - changed-files:
   - any-glob-to-any-file: Blouppy.Events.Tests/**
 
 ci/cd 🚀:
 - changed-files:
   - any-glob-to-any-file: .github/workflows/**
+
+renovate ⚙️:
+- changed-files:
+  - any-glob-to-any-file: .github/renovate/**
 
 documentation 📄:
   - changed-files:
