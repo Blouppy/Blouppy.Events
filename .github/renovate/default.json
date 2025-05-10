@@ -14,22 +14,22 @@
   "packageRules": [
     {
       "extends": [
-        "local>Blouppy/BlouppyAngularAspNetCoreStarter//.github/renovate/rules/nuget"
+        "local>Blouppy/Blouppy.Events//.github/renovate/rules/nuget"
       ]
     },
     {
       "extends": [
-        "local>Blouppy/BlouppyAngularAspNetCoreStarter//.github/renovate/rules/autofixture"
+        "local>Blouppy/Blouppy.Events//.github/renovate/rules/autofixture"
       ]
     },
     {
       "extends": [
-        "local>Blouppy/BlouppyAngularAspNetCoreStarter//.github/renovate/rules/fluent-assertions"
+        "local>Blouppy/Blouppy.Events//.github/renovate/rules/fluent-assertions"
       ]
     },
     {
       "extends": [
-        "local>Blouppy/BlouppyAngularAspNetCoreStarter//.github/renovate/rules/xunit"
+        "local>Blouppy/Blouppy.Events//.github/renovate/rules/xunit"
       ]
     }
   ],
