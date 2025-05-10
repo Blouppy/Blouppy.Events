@@ -14,7 +14,9 @@ internal sealed class EventHandlerWrapper<TEvent> : IEventHandlerWrapper
     {
         var handlers = serviceProvider
             .GetServices<IEventHandler<TEvent>>()
-            .Select(static x => new EventHandlerExecutor(x, (theEvent, theToken) => x.HandleAsync((TEvent)theEvent, theToken)));
+            .Select(static x => new EventHandlerExecutor(
+                HandlerInstance: x,
+                HandlerCallback: (@event, token) => x.HandleAsync((TEvent)@event, token)));
 
         return publish(handlers, @event, cancellationToken);
     }
