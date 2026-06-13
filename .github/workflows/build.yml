@@ -22,7 +22,7 @@ jobs:
       ASPNETCORE_ENVIRONMENT: "CI"
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         name: Checkout code
 
       - name: Setup .NET 📦
